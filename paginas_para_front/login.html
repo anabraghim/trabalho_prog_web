@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - CineXP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white">
+
+  <!-- Navbar -->
+  <nav class="flex items-center justify-between px-6 py-4 bg-black bg-opacity-80 fixed top-0 w-full z-10">
+    <div class="flex items-center gap-2">
+      <img src="img/icone.png" alt="Logo" class="w-12 h-15" />
+      <span class="text-white text-2xl font-bold">CINE<span class="text-purple-500">XP</span></span>
+    </div>
+    <ul class="hidden md:flex gap-6 font-medium">
+      <li><a href="#" class="hover:text-purple-400">Críticas</a></li>
+      <li><a href="#" class="hover:text-purple-400">Minhas críticas</a></li>
+    </ul>
+    <div class="flex gap-2">
+      <a href="cadastro.html" class="border border-white px-4 py-1 rounded hover:bg-white hover:text-black transition">Cadastrar</a>
+      <a href="login.html" class="bg-purple-600 px-4 py-1 rounded hover:bg-purple-700 transition">Entrar</a>
+    </div>
+  </nav>
+
+  <!-- Tela de Login -->
+  <section class="h-screen bg-cover bg-center flex items-center justify-center pt-20" style="background-image: url('img/fundo.jpg');">
+    <div class="bg-black bg-opacity-80 p-10 rounded-lg w-full max-w-md mx-4 text-center">
+      <h2 class="text-3xl font-bold text-purple-500 mb-6">Bem-vindo(a) de volta!</h2>
+      <form action="#" method="POST" class="space-y-5 text-left">
+        <div>
+          <label for="email" class="block mb-1">E-mail</label>
+          <input type="email" id="email" name="email" required
+            class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:border-purple-500" />
+        </div>
+        <div>
+          <label for="senha" class="block mb-1">Senha</label>
+          <input type="password" id="senha" name="senha" required
+            class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:border-purple-500" />
+        </div>
+        <button type="submit"
+          class="w-full bg-purple-600 hover:bg-purple-700 transition px-4 py-2 rounded text-white font-semibold">
+          Entrar
+        </button>
+      </form>
+      <div class="mt-4 text-sm text-gray-400">
+        <a href="#" class="hover:underline">Esqueceu a senha?</a>
+      </div>
+      <div class="mt-4 text-sm">
+        Primeira vez aqui? <a href="cadastro.html" class="text-purple-500 hover:underline">Cadastre-se agora.</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

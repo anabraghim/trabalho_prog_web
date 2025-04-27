@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CineXP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white">
+
+  <!-- Navbar -->
+  <nav class="flex items-center justify-between px-6 py-4 bg-black bg-opacity-80 fixed top-0 w-full z-10">
+    <div class="flex items-center gap-2">
+      <img src="img/icone.png" alt="Logo CineXP" class="w-12 h-15" />
+      <span class="text-white text-2xl font-bold">CINE<span class="text-purple-500">XP</span></span>
+    </div>
+    <ul class="hidden md:flex gap-6 font-medium">
+      <li><a href="#" class="hover:text-purple-400 hover:underline">Críticas</a></li>
+      <li><a href="#" class="hover:text-purple-400 hover:underline">Minhas críticas</a></li>
+    </ul>
+    <div class="flex gap-2">
+      <a href="./cadastro.html" class="border border-white px-4 py-1 rounded hover:bg-white hover:text-black hover:underline transition">Cadastrar</a>
+      <a href="./login.html" class="bg-purple-600 px-4 py-1 rounded hover:bg-purple-700 hover:underline transition">Entrar</a>
+    </div>
+  </nav>
+
+  <!-- Seção Principal -->
+  <section class="h-screen bg-cover bg-center flex items-center justify-center text-center" style="background-image: url('img/fundo.jpg');">
+    <div class="bg-black bg-opacity-70 p-24 rounded max-w-6xl w-full mx-4">
+      <h1 class="text-6xl md:text-8xl font-bold mb-10 leading-tight">
+        Seu próximo filme<br />começa aqui.
+      </h1>
+      <div class="flex justify-center gap-6">
+        <a href="./cadastro.html" class="border border-white px-8 py-3 text-lg rounded hover:bg-white hover:text-black hover:underline transition">
+          Cadastrar
+        </a>
+        <a href="./login.html" class="bg-purple-600 px-8 py-3 text-lg rounded hover:bg-purple-700 hover:underline transition">
+          Entrar
+        </a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

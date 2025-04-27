@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Filme - CineXP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a2e0e6a011.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-black min-h-screen flex flex-col bg-black text-white">
+
+   <!----------------------- Navbar -->
+   <nav class="flex items-center justify-between px-6 py-4 bg-black bg-opacity-80 fixed top-0 w-full z-10">
+    <div class="flex items-center gap-2">
+      <img src="img/icone.png" alt="Logo CineXP" class="w-12 h-15" />
+      <span class="text-white text-2xl font-bold">CINE<span class="text-purple-500">XP</span></span>
+    </div>
+    <ul class="hidden md:flex gap-6 font-medium">
+      <li><a href="#" class="hover:text-purple-400">Críticas</a></li>
+      <li><a href="#" class="hover:text-purple-400">Minhas Críticas</a></li>
+    </ul>
+    <div class="flex gap-2">
+      
+      <a href="./perfil.html" class="bg-gray-800 p-1 rounded-full hover:bg-gray-700 transition overflow-hidden w-10 h-10 flex items-center justify-center">
+        <img src="img/perfil.png" alt="Perfil" class="w-full h-full object-cover rounded-full" />
+      </a>
+
+      <a href="./logout.html" class="border border-white px-4 py-1 rounded hover:bg-white hover:text-black transition">Sair</a>
+    </div>
+  </nav>
+
+  <!-- Formulário -->
+  <main class="flex-grow flex items-center justify-center bg-cover bg-center relative" style="background-image: url('img/fundo.jpg');">
+    <div class="bg-black bg-opacity-80 p-8 rounded-2xl max-w-4xl w-full flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-10">
+
+      <!-- Imagem de interrogação -->
+      <div class="flex justify-center items-center w-full md:w-1/3">
+        <div class="text-white text-9xl">?</div>
+      </div>
+
+      <!-- Formulário de inputs -->
+      <form class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 text-white">
+        <input type="text" placeholder="Nome do Filme" class="bg-black bg-opacity-50 border border-gray-600 p-3 rounded">
+        <input type="text" placeholder="Categoria" class="bg-black bg-opacity-50 border border-gray-600 p-3 rounded">
+        <input type="text" placeholder="Diretor" class="bg-black bg-opacity-50 border border-gray-600 p-3 rounded">
+        <input type="text" placeholder="Data de Lançamento" class="bg-black bg-opacity-50 border border-gray-600 p-3 rounded">
+
+        <textarea placeholder="Informações Adicionais" class="bg-black bg-opacity-50 border border-gray-600 p-3 rounded md:col-span-1"></textarea>
+        <textarea placeholder="Sinopse" class="bg-black bg-opacity-50 border border-gray-600 p-3 rounded md:col-span-2 h-32"></textarea>
+
+        <div class="md:col-span-2 flex justify-end">
+          <button type="submit" class="bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded text-white font-bold">Cadastrar Filme</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+</body>
+</html>

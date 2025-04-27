@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil - CineXP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a2e0e6a011.js" crossorigin="anonymous"></script> 
+</head>
+<body class="bg-black text-white">
+
+  <!----------------------- Navbar -->
+  <nav class="flex items-center justify-between px-6 py-4 bg-black bg-opacity-80 fixed top-0 w-full z-10">
+    <div class="flex items-center gap-2">
+      <img src="img/icone.png" alt="Logo CineXP" class="w-12 h-15" />
+      <span class="text-white text-2xl font-bold">CINE<span class="text-purple-500">XP</span></span>
+    </div>
+    <ul class="hidden md:flex gap-6 font-medium">
+      <li><a href="#" class="hover:text-purple-400">Críticas</a></li>
+      <li><a href="#" class="hover:text-purple-400">Minhas Críticas</a></li>
+    </ul>
+    <div class="flex gap-2">
+      
+      <a href="./perfil.html" class="bg-gray-800 p-1 rounded-full hover:bg-gray-700 transition overflow-hidden w-10 h-10 flex items-center justify-center">
+        <img src="img/perfil.png" alt="Perfil" class="w-full h-full object-cover rounded-full" />
+      </a>
+
+      <a href="./logout.html" class="border border-white px-4 py-1 rounded hover:bg-white hover:text-black transition">Sair</a>
+    </div>
+  </nav>
+
+  <section class="min-h-screen flex items-center justify-center pt-24 px-4">
+    <div class="bg-black bg-opacity-70 p-12 rounded max-w-4xl w-full">
+      
+      
+      <h1 class="text-4xl font-bold mb-10 text-left">Minha Conta</h1>
+
+      <form class="flex flex-col gap-6">
+        
+        <!-- nome-->
+        <div class="flex flex-col text-left">
+          <label for="nome" class="mb-2 text-sm font-medium text-white">Nome</label>
+          <input type="text" id="nome" name="nome" class="p-3 bg-black text-white border border-white rounded" placeholder="Seu nome" />
+        </div>
+
+        <!-- usuario -->
+        <div class="flex flex-col text-left">
+          <label for="usuario" class="mb-2 text-sm font-medium text-white">Nome de Usuário</label>
+          <input type="text" id="usuario" name="usuario" class="p-3 bg-black text-white border border-white rounded" placeholder="Seu nome de usuário" />
+        </div>
+
+        <!-- email-->
+        <div class="flex flex-col text-left">
+          <label for="email" class="mb-2 text-sm font-medium text-white">Email</label>
+          <input type="email" id="email" name="email" class="p-3 bg-black text-white border border-white rounded" placeholder="Seu e-mail" />
+        </div>
+
+        <!-- senha -->
+        <div class="flex flex-col text-left">
+          <label for="senha" class="mb-2 text-sm font-medium text-white">Senha</label>
+          <input type="password" id="senha" name="senha" class="p-3 bg-black text-white border border-white rounded" placeholder="Sua senha" />
+        </div>
+
+        <!-- cancelar/salvarr -->
+        <div class="flex justify-center gap-6 mt-8">
+          <a href="./perfil.html" class="border border-white px-6 py-3 text-lg rounded hover:bg-white hover:text-black transition">Cancelar</a>
+          <button type="submit" class="bg-purple-600 px-6 py-3 text-lg rounded hover:bg-purple-700 transition">Salvar</button>
+        </div>
+
+      </form>
+
+    </div>
+  </section>
+
+</body>
+</html>
