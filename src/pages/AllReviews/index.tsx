@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import type { Review } from "../../types/Review";
 
 export default function AllReviews() {
-    const [reviews, setReviews] = useState([]);
+    const [reviews, setReviews] = useState<Review[]>([]);
     const [loading, setLoading] = useState(true);
     const [query, setQuery] = useState("");
 

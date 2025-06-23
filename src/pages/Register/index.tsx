@@ -8,7 +8,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleRegister = async (e) => {
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -27,9 +27,10 @@ export default function Register() {
 
       setMessage("Conta criada com sucesso! Faça login.");
       
-    } catch (err) {
-      setMessage(err.message);
-    }
+    }catch (e) {
+  const error = e as Error;
+  setMessage(error.message);
+}
   };
 
   return (
