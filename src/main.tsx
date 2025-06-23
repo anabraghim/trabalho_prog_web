@@ -14,6 +14,7 @@ import AddReview from './pages/AddReview/index.tsx'
 import PrivateRoute from './components/PrivateRoute.tsx'
 import MyReviews from './pages/MyReviews/MyReviews.tsx'
 import ReviewDetails from './pages/ReviewDetails/ReviewDetails.tsx'
+import AddMovie from './pages/AddMovie/index.tsx'
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,14 @@ const router = createBrowserRouter([
   element: (
     <PrivateRoute>
       <ReviewDetails />
+    </PrivateRoute>
+  )
+},
+{
+  path: "movies/new",
+  element: (
+    <PrivateRoute>
+      <AddMovie/>
     </PrivateRoute>
   )
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import type { RootState } from "../../store";
 
 let debounceTimeout: NodeJS.Timeout;
@@ -155,6 +155,13 @@ export default function AddReview() {
         </button>
       </form>
       {message && <p className="mt-4 text-center text-red-500">{message}</p>}
+      <p className="mb-2 text-gray-700">Não encontrou o filme que gostaria?</p>
+      <Link
+  to="/movies/new"
+  className="inline-block bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
+>
+  Cadastre o filme
+</Link>
     </div>
   );
 }

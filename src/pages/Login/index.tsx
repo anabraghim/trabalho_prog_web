@@ -29,7 +29,7 @@ export default function Login() {
       }
 
       const data = await res.json();
-      console.log("data.user recebido:", data.user);
+      // console.log("data.user recebido:", data.user);
 
       // Salva no Redux e no localStorage
       localStorage.setItem("token", data.token);
