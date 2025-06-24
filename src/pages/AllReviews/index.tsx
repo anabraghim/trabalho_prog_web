@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import type { Review } from "../../types/Review";
-import { useNavigate } from "react-router-dom";
 
 export default function AllReviews() {
     const [reviews, setReviews] = useState<Review[]>([]);
