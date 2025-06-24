@@ -92,17 +92,16 @@ function AddMovie() {
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-8">
+    <div className="container spacing place-self-center flex flex-col">
       <h1 className="text-2xl font-bold mb-4">Cadastrar Filme</h1>
-
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Pesquisar filme..."
-        className="w-full p-2 border rounded mb-2"
+        className="w-full p-4 border-[1px] border-neutral-600 rounded-[10px] outline-0"
       />
-      <button onClick={handleSearch} className="bg-blue-600 text-white px-4 py-2 rounded mb-4">
+      <button onClick={handleSearch} className="bg-purple-600 text-white px-10 py-2 rounded mb-4 self-center font-bold">
         Buscar
       </button>
 

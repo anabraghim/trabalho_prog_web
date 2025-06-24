@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+body {
+    background-color: black;
+    color: white;
+}
+
+@layer {
+  .spacing {
+    padding: 2rem;
+  }
+
+
+}

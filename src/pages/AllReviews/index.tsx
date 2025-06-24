@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Review } from "../../types/Review";
+import { useNavigate } from "react-router-dom";
 
 export default function AllReviews() {
     const [reviews, setReviews] = useState<Review[]>([]);
@@ -25,16 +26,15 @@ export default function AllReviews() {
 
   useEffect(() => {
     fetchReviews();
-  }, [query]); // chama toda vez que o query muda
+  }, [query]); 
 
     return (
-    <div>
-        <h1 className="text-2xl font-bold mb-4">Todas as Críticas</h1>
-
+    <div className="container place-self-center spacing">
+        <h1 className="text-3xl font-bold mb-4">Todas as Críticas</h1>
         <input
         type="text"
-        placeholder="Buscar críticas..."
-        className="border p-2 mb-4 w-full"
+        placeholder="Pesquisar crítica"
+        className="bg-neutral-800 py-3 px-6 mb-4 w-full rounded-full outline-0"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         />

@@ -94,22 +94,22 @@ export default function AddReview() {
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-8">
+    <div className="container spacing place-self-center">
       <h1 className="text-2xl font-bold mb-4">Nova Crítica</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4 flex flex-col">
         <input
           type="text"
           placeholder="Título da Crítica"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="w-full p-4 border-[1px] border-neutral-600 rounded-[10px] outline-0"
           required
         />
         <textarea
           placeholder="Texto da Crítica"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="w-full p-4 border-[1px] border-neutral-600 rounded-[10px] outline-0"
           required
         />
         <input
@@ -117,7 +117,7 @@ export default function AddReview() {
           placeholder="Nota (1 a 5)"
           value={rating}
           onChange={(e) => setRating(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="w-full p-4 border-[1px] border-neutral-600 rounded-[10px] outline-0"
           min="1"
           max="5"
           required
@@ -128,7 +128,7 @@ export default function AddReview() {
             placeholder="Buscar Filme"
             value={search}
             onChange={(e) => handleMovieSearch(e.target.value)}
-            className="w-full p-2 border rounded"
+            className="w-full p-4 border-[1px] border-neutral-600 rounded-[10px] outline-0"
             required
           />
           {movieSuggestions.length > 0 && (
@@ -149,19 +149,23 @@ export default function AddReview() {
             </ul>
           )}
         </div>
-
-        <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">
-          Enviar Crítica
-        </button>
-      </form>
-      {message && <p className="mt-4 text-center text-red-500">{message}</p>}
-      <p className="mb-2 text-gray-700">Não encontrou o filme que gostaria?</p>
+        <div className="flex gap-2">
+          <p className="mb-2 text-gray-700">Não encontrou o filme que gostaria?</p>
       <Link
   to="/movies/new"
-  className="inline-block bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
+  className="text-purple-600 font-semibold"
 >
   Cadastre o filme
 </Link>
+        </div>
+
+
+        <button type="submit" className="bg-purple-600 text-white p-2 rounded font-bold place-self-center px-8 py-3">
+          Enviar Crítica
+        </button>
+      </form>
+      {message && <p className="mt-4 text-center text-red-500">{message}</p>}''
+      
     </div>
   );
 }

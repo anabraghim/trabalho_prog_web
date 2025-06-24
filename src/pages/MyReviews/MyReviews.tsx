@@ -84,14 +84,14 @@ const handleDelete = async (id: number) => {
   if (loading) return <p className="text-center mt-8">Carregando...</p>;
 
   return (
-    <div className="max-w-4xl mx-auto mt-8">
+    <div className="container spacing place-self-center">
         <button
         onClick={() => navigate("/reviews/new")}
-        className="mb-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        className="absolute right-10 bottom-10 mb-6 bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-900 font-semibold"
       >
         + Adicionar Nova Crítica
       </button>
-      <h1 className="text-2xl font-bold mb-4">Minhas Críticas</h1>
+      <h1 className="text-3xl font-bold mb-4">Minhas Críticas</h1>
       {message && <p className="text-red-500 mb-4">{message}</p>}
       {reviews.length === 0 ? (
         <p>Você ainda não fez nenhuma crítica.</p>
