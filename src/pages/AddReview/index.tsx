@@ -66,7 +66,7 @@ export default function AddReview() {
       }
 
       setMessage("Crítica criada com sucesso!");
-      navigate("/reviews");
+      navigate("/reviews/my");
     } catch (err: any) {
       setMessage(err.message);
     }
@@ -132,7 +132,7 @@ export default function AddReview() {
             required
           />
           {movieSuggestions.length > 0 && (
-            <ul className="absolute z-10 w-full border bg-white rounded mt-1 max-h-48 overflow-y-auto">
+            <ul className="absolute z-10 w-full border-[1px] border-neutral-600 bg-neutral-900 rounded mt-1 max-h-48 overflow-y-auto">
               {movieSuggestions.map((movie) => (
                 <li
                   key={movie.id}
@@ -141,7 +141,7 @@ export default function AddReview() {
                     setMovieId(movie.id.toString());
                     setMovieSuggestions([]);
                   }}
-                  className="p-2 hover:bg-gray-100 cursor-pointer"
+                  className="p-2 hover:bg-neutral-800 cursor-pointer"
                 >
                   {movie.title}
                 </li>

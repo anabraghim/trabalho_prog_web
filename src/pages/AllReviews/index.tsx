@@ -59,7 +59,7 @@ export default function AllReviews() {
     to={`/reviews/${review.id}`}
     className="gap-5 flex cursor-pointer hover:bg-neutral-900 p-3 rounded-xl transition-colors"
   >
-    <div className="self-center w-40 h-40 aspect-square overflow-hidden rounded-2xl bg-neutral-800 shrink-0">
+    <div className="self-center  h-50 w-40 aspect-square overflow-hidden rounded-2xl bg-neutral-800 shrink-0">
       <img
         src={review.movie?.image_url}
         className="h-full w-full object-cover"

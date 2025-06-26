@@ -128,7 +128,7 @@ export default function ReviewDetails() {
         {message && <p className="text-purple-400 text-center">{message}</p>}
         
         <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
-          <div className="w-40 aspect-square overflow-hidden rounded-xl bg-neutral-800 shrink-0 flex">
+          <div className="w-full sm:w-40  aspect-square overflow-hidden rounded-xl bg-neutral-800 shrink-0 flex">
             <img
               src={review.movie?.image_url}
               alt={review.movie?.title}
