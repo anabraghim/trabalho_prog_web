@@ -10,7 +10,7 @@ function AddMovie() {
   const [selectedMovie, setSelectedMovie] = useState<any>(null);
   const [movieDetails, setMovieDetails] = useState<any>(null);
   const [message, setMessage] = useState("");
-  console.log(selectedMovie)
+  
 
   const token = useSelector((state: RootState) => state.auth.token);
 
@@ -19,7 +19,7 @@ function AddMovie() {
     setMessage("");
     try {
       const res = await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}`
+        `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}&language=pt-BR`
       );
       const data = await res.json();
       setResults(data.results || []);
@@ -36,7 +36,7 @@ function AddMovie() {
 
     try {
       const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${TMDB_API_KEY}&append_to_response=credits`
+        `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${TMDB_API_KEY}&append_to_response=credits&language=pt-BR`
       );
       const data = await res.json();
 
@@ -51,8 +51,6 @@ function AddMovie() {
         director: directorObj?.name || "Diretor desconhecido",
         genres: genres,
       };
-
-    //   console.log("Dados enviados para a API:", details);
 
       setMovieDetails(details);
       setMessage("");
@@ -83,7 +81,7 @@ function AddMovie() {
         throw new Error(error.message || "Erro ao salvar filme.");
       }
 
-      setMessage("Filme salvo com sucesso!");
+      setMessage(`${selectedMovie.title} foi salvo com sucesso!`);
       setSelectedMovie(null);
       setMovieDetails(null);
     } catch (err: any) {
@@ -101,43 +99,76 @@ function AddMovie() {
         placeholder="Pesquisar filme..."
         className="w-full p-4 border-[1px] border-neutral-600 rounded-[10px] outline-0"
       />
-      <button onClick={handleSearch} className="bg-purple-600 text-white px-10 py-2 rounded mb-4 self-center font-bold">
+      <button
+        onClick={handleSearch}
+        className="mt-10 bg-purple-600 text-white px-10 py-2 rounded mb-6 self-center font-bold"
+      >
         Buscar
       </button>
 
-      <ul>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
         {results.map((movie) => (
-          <li
+          <div
             key={movie.id}
-            className="p-2 border-b cursor-pointer hover:bg-gray-100"
             onClick={() => handleSelectMovie(movie)}
+            className="bg-neutral-900 flex flex-col  text-white rounded-xl overflow-hidden shadow-lg cursor-pointer hover:scale-105 transition-transform"
           >
-            {movie.title} ({movie.release_date?.slice(0, 4)})
-          </li>
+            <div className="h-72 w-full overflow-hidden rounded-2xl p-4">
+              {movie.poster_path ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                  className="w-full h-full object-cover object-top rounded-2xl"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-sm text-gray-400 bg-neutral-700">
+                  Sem imagem
+                </div>
+              )}
+            </div>
+            <div className="pb-4 px-4 flex flex-col items-center justify-center">
+              <p className=" font-semibold text-lg text-center">{movie.title}</p>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
+  <div className="h-[1px] w-full bg-neutral-900 my-6"></div>
 
       {movieDetails && (
-        <div className="mt-6 border-t pt-4">
-          <h2 className="text-xl font-semibold">{movieDetails.title}</h2>
-          <img
-            src={movieDetails.image_url}
-            alt={movieDetails.title}
-            className="mt-2 mb-4 w-40"
-          />
-          <p><strong>Ano:</strong> {movieDetails.release_year}</p>
-          <p><strong>Diretor:</strong> {movieDetails.director}</p>
-          <p><strong>Gêneros:</strong> {movieDetails.genres.join(", ")}</p>
-          <button
-            onClick={handleSave}
-            className="mt-4 bg-green-600 text-white px-4 py-2 rounded"
-          >
-            Salvar no sistema
-          </button>
-        </div>
-      )}
+  <div className="mt-5 flex flex-col max-w-4xl place-self-center bg-neutral-900 items-center text-white p-6 rounded-xl shadow-lg space-y-6">
+    
+    <h2 className="text-2xl font-bold text-center">{movieDetails.title}</h2>
+    <div className="flex flex-col max-w-2xs items-center rounded-2xl">
+       <img
+          src={movieDetails.image_url}
+          alt={movieDetails.title}
+          className="w-full aspect-square object-top object-cover rounded-2xl"
+        />
+        <div className="flex flex-col space-y-2 w-full items-center ">
+          <div className="flex flex-col items-center gap-2 mt-4">
+            <p className="text-sm text-gray-400">
+          <span className="text-white font-medium">Ano:</span> {movieDetails.release_year}
+        </p>
+        <p className="text-sm text-gray-400">
+          <span className="text-white font-medium">Diretor:</span> {movieDetails.director}
+        </p>
+        <p className="text-sm text-gray-400 flex flex-col items-center ">
+          <span className="text-center text-gray-400"><span className="font-medium text-white">Gêneros: </span >{movieDetails.genres.join(", ")}</span>
+        </p>
+          </div>
 
-      {message && <p className="mt-4 text-center text-green-600">{message}</p>}
+        <button
+          onClick={handleSave}
+          className="self-center mt-4 bg-neutral-600 hover:bg-neutral-700 text-white px-6 py-3 rounded-lg font-semibold w-fit"
+        >
+          Salvar no sistema
+        </button>
+        </div>
+    </div>
+  </div>
+)}
+
+      {message && <p className="mt-4 text-center text-purple-600">{message}</p>}
     </div>
   );
 }

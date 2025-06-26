@@ -125,7 +125,7 @@ export default function ReviewDetails() {
   return (
     <div className="container spacing place-self-center">
       <div className="mt-10 bg-neutral-900 text-white p-6 rounded-xl shadow-lg space-y-6">
-        {message && <p className="text-green-400 text-center">{message}</p>}
+        {message && <p className="text-purple-400 text-center">{message}</p>}
         
         <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
           <div className="w-40 aspect-square overflow-hidden rounded-xl bg-neutral-800 shrink-0 flex">
