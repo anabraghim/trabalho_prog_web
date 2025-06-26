@@ -8,4 +8,7 @@ export type Review = {
     title: string;
     image_url?: string;
   };
+  user: {
+    username: string;
+  };
 };

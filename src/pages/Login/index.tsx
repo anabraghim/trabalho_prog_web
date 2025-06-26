@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../store/slices/authSlice";
+import background from '../../assets/imgs/background.png'
+
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -44,15 +46,17 @@ export default function Login() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8">
-      <h1 className="text-2xl font-bold mb-4">Login</h1>
-      <form onSubmit={handleLogin} className="space-y-4">
+    
+    <div className="h-[100vh] flex bg-cover bg-no-repeat bg-center justify-center items-center " style={{ backgroundImage: `url(${background})` }}>
+      <div className="bg-black opacity-80 flex flex-col items-center justify-center gap-1 p-10 m-5 md:m-5 w-8/10 rounded-3xl max-w-[500px]">
+      <h1 className="text-center text-2xl sm:text-3xl font-bold mb-4 opacity-80">Bem-vindo(a) de volta!</h1>
+      <form onSubmit={handleLogin} className="space-y-4 flex flex-col w-full">
         <input
           type="email"
           placeholder="E-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="w-full p-4 border-[1px] border-neutral-600 rounded-[10px] outline-0"
           required
         />
         <input
@@ -60,20 +64,21 @@ export default function Login() {
           placeholder="Senha"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="w-full p-4 border-[1px] border-neutral-600 rounded-[10px] outline-0"
           required
         />
-        <button type="submit" className="w-full bg-green-500 text-white p-2 rounded">
+        <button type="submit" className="bg-purple-600 text-white px-10 py-2 rounded mb-4 font-bold">
           Entrar
         </button>
       </form>
-      {message && <p className="mt-4 text-center text-red-500">{message}</p>}
-    <p className="mt-6 text-center text-sm">
+      {message && <p className="mt-4 text-center text-purple-600">{message}</p>}
+    <p className="text-center text-sm">
         Ainda não tem uma conta?{" "}
-        <Link to="/register" className="text-blue-600 hover:underline">
-          Registre-se
+        <Link to="/register" className="text-purple-600 font-bold">
+          Cadastre-se
         </Link>
       </p>
+    </div>
     </div>
   );
 }

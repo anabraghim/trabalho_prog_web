@@ -4,7 +4,9 @@ body {
     background-color: black;
     color: white;
 }
-
+button:hover {
+  cursor: pointer;
+}
 @layer {
   .spacing {
     padding: 2rem;

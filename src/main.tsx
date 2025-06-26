@@ -32,18 +32,17 @@ const router = createBrowserRouter([
             <MyReviews/>
           </PrivateRoute>
         )
-      }
-    ]
-  },
-  {
-    path: "/reviews/new",
+      },
+      {
+path: "/reviews/new",
   element: (
     <PrivateRoute>
       <AddReview />
     </PrivateRoute>
   )
-  },
-  {
+      }
+      ,
+      {
   path: "/reviews/:id",
   element: (
     <PrivateRoute>
@@ -59,6 +58,8 @@ const router = createBrowserRouter([
     </PrivateRoute>
   )
 }
+    ]
+  },
 ])
 
 createRoot(document.getElementById('root')!).render(

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Review } from "../../types/Review";
+import { Link } from "react-router-dom";
+
 
 export default function AllReviews() {
     const [reviews, setReviews] = useState<Review[]>([]);
@@ -23,6 +25,14 @@ export default function AllReviews() {
     }
   };
 
+  const ratingToNumber: Record<string, number> = {
+  one: 1,
+  two: 2,
+  three: 3,
+  four: 4,
+  five: 5,
+};
+
   useEffect(() => {
     fetchReviews();
   }, [query]); 
@@ -41,16 +51,49 @@ export default function AllReviews() {
         {loading ? (
         <p>Carregando críticas...</p>
         ) : (
-        <ul className="space-y-4">
+        <ul className="flex flex-col">
     {reviews.map((review) => (
-    <li key={review.id} className="p-4 border rounded">
-        <h2 className="text-xl font-semibold">{review.title}</h2>
-        <p><strong>Filme:</strong> {review.movie?.title}</p>
-        <p><strong>Nota:</strong> {review.rating}</p>
-        <p>{review.text}</p>
-        <p>{new Date(review.created_at).toLocaleDateString()}</p>
-        <p>img: {review.movie?.image_url}</p>
-    </li>
+    <li key={review.id} className="">
+  <div className="h-[1px] w-full bg-neutral-900 my-6"></div>
+  <Link
+    to={`/reviews/${review.id}`}
+    className="gap-5 flex cursor-pointer hover:bg-neutral-900 p-3 rounded-xl transition-colors"
+  >
+    <div className="self-center w-40 h-40 aspect-square overflow-hidden rounded-2xl bg-neutral-800 shrink-0">
+      <img
+        src={review.movie?.image_url}
+        className="h-full w-full object-cover"
+        alt=""
+      />
+    </div>
+    <div>
+      <h2 className="text-xl font-semibold">{review.title}</h2>
+      <p className="text-sm text-neutral-500">{review.movie.title}</p>
+      <p className="text-sm text-neutral-400">por @{review.user?.username}</p>
+
+
+      <div className="mt-2 flex">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <svg
+            key={i}
+            className={`w-5 h-5 ${
+              i < ratingToNumber[review.rating.toLowerCase()]
+                ? "text-yellow-400"
+                : "text-transparent"
+            }`}
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.955a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.955c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.175 0l-3.37 2.448c-.784.57-1.838-.197-1.539-1.118l1.285-3.955a1 1 0 00-.364-1.118L2.098 9.382c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.951-.69l1.286-3.955z" />
+          </svg>
+        ))}
+      </div>
+
+        <p className="mt-2 line-clamp-3 text-ellipsis overflow-hidden">{review.text}</p>
+    </div>
+  </Link>
+</li>
+
     ))}
 </ul>
         )}
