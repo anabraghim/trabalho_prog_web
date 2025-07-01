@@ -23,6 +23,8 @@ export default function ReviewDetails() {
   const { id } = useParams();
   const [review, setReview] = useState<any>(null);
   const [message, setMessage] = useState("");
+  const [newComment, setNewComment] = useState("");
+
   const token = useSelector((state: RootState) => state.auth.token);
   const currentUser = useSelector((state: RootState) => state.auth.user);
 
@@ -31,39 +33,33 @@ export default function ReviewDetails() {
   const [editableRating, setEditableRating] = useState("");
   const [isEdited, setIsEdited] = useState(false);
 
-  useEffect(() => {
-    const fetchReview = async () => {
-      try {
-        const res = await fetch(`https://api-cinexp.onrender.com/reviews/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+  const fetchReview = async () => {
+  try {
+    const res = await fetch(`https://api-cinexp.onrender.com/reviews/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-        if (!res.ok) {
-          const error = await res.json();
-          throw new Error(error.message || "Erro ao buscar crítica.");
-        }
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.message || "Erro ao buscar crítica.");
+    }
 
-        const data = await res.json();
-        setReview(data);
-        setEditableTitle(data.title);
-        setEditableText(data.text);
-        setEditableRating(wordToRating[data.rating]);
-      } catch (err: any) {
-        setMessage(err.message);
-      }
-    };
-
-    if (token) fetchReview();
-  }, [id, token]);
+    const data = await res.json();
+    setReview(data);
+    setEditableTitle(data.title);
+    setEditableText(data.text);
+    setEditableRating(wordToRating[data.rating]);
+  } catch (err: any) {
+    setMessage(err.message);
+  }
+};
+useEffect(() => {
+  if (token) fetchReview();
+}, [id, token]);
 
   const isOwner = review?.user_id === currentUser?.id;
-
-  if (!token) {
-    setMessage("Você não está autenticado.");
-    return null;
-  }
 
   const handleSave = async () => {
     const convertedRating = ratingToWord[editableRating];
@@ -94,7 +90,6 @@ export default function ReviewDetails() {
 
       const updated = await res.json();
       setReview({ ...updated, movie: review.movie, user: review.user });
-
       setEditableTitle(updated.title);
       setEditableText(updated.text);
       setEditableRating(wordToRating[updated.rating]);
@@ -105,7 +100,39 @@ export default function ReviewDetails() {
     }
   };
 
-  if (!review) return <p className="container spacing text-center mt-8">Carregando...</p>;
+  const handleCommentSubmit = async () => {
+  if (!newComment) {
+    setMessage("O comentário não pode estar vazio.");
+    return;
+  }
+
+  try {
+    const res = await fetch("https://api-cinexp.onrender.com/comments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        text: newComment,
+        reviewId: Number(id),
+      }),
+    });
+
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.message || "Erro ao enviar comentário.");
+    }
+
+    await res.json(); // não precisa armazenar o retorno
+    await fetchReview(); // 🔁 busca a review atualizada
+    setNewComment("");   // 🧹 limpa o campo
+    setMessage("Comentário adicionado com sucesso!");
+  } catch (err: any) {
+    setMessage(err.message);
+  }
+};
+
 
   const renderStars = (rating: number) => (
     <div className="flex gap-1">
@@ -122,13 +149,21 @@ export default function ReviewDetails() {
     </div>
   );
 
+  if (!token) {
+    return <p className="text-center mt-8 text-red-500">Você não está autenticado.</p>;
+  }
+
+  if (!review) {
+    return <p className="container spacing text-center mt-8">Carregando...</p>;
+  }
+
   return (
     <div className="container spacing place-self-center">
       <div className="mt-10 bg-neutral-900 text-white p-6 rounded-xl shadow-lg space-y-6">
         {message && <p className="text-purple-400 text-center">{message}</p>}
-        
+
         <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
-          <div className="w-full sm:w-40  aspect-square overflow-hidden rounded-xl bg-neutral-800 shrink-0 flex">
+          <div className="w-full sm:w-40 aspect-square overflow-hidden rounded-xl bg-neutral-800 shrink-0 flex">
             <img
               src={review.movie?.image_url}
               alt={review.movie?.title}
@@ -137,7 +172,6 @@ export default function ReviewDetails() {
           </div>
 
           <div className="flex flex-col w-full space-y-4">
-            {/* <p className="font-semibold">Título:</p> */}
             {isOwner ? (
               <input
                 value={editableTitle}
@@ -151,6 +185,7 @@ export default function ReviewDetails() {
             ) : (
               <h1 className="text-3xl font-bold">{review.title}</h1>
             )}
+
             <div className="flex items-center gap-2">
               <span className="font-medium">Nota:</span>
               {isOwner ? (
@@ -169,11 +204,9 @@ export default function ReviewDetails() {
                 renderStars(Number(wordToRating[review.rating]))
               )}
             </div>
-            
-              <p className="text-sm text-neutral-400">por @{review.user?.username}</p>
-            
 
-            {/* <p className="font-semibold">Texto:</p> */}
+            <p className="text-sm text-neutral-400">por @{review.user?.username}</p>
+
             {isOwner ? (
               <textarea
                 value={editableText}
@@ -188,7 +221,6 @@ export default function ReviewDetails() {
               <p className="text-gray-200">{review.text}</p>
             )}
 
-
             {isOwner && isEdited && (
               <button
                 onClick={handleSave}
@@ -199,6 +231,41 @@ export default function ReviewDetails() {
             )}
           </div>
         </div>
+      </div>
+
+      <div className="mt-8 flex flex-col">
+        <h2 className="text-xl font-bold mb-4">Comentários</h2>
+
+        <div className="mb-6 flex flex-col gap-3">
+          <textarea
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+            placeholder="Escreva um comentário..."
+            className="w-full bg-neutral-900 rounded-lg p-3 text-white outline-none"
+          />
+          <button
+            onClick={handleCommentSubmit}
+            className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded font-semibold self-center "
+          >
+            Comentar
+          </button>
+        </div>
+
+        {review.comments?.length === 0 ? (
+          <p className="text-gray-400">Ainda não há comentários.</p>
+        ) : (
+          <div className="space-y-4">
+            {review.comments?.map((comment: any) => (
+              <div
+                key={comment.id}
+                className="bg-black p-4 rounded-lg border border-neutral-700"
+              >
+                <p className="text-sm text-neutral-300">{comment.text}</p>
+                <p className="text-xs text-neutral-500 mt-2">— @{comment.user?.username}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
