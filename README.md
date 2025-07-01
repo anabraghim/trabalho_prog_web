@@ -1,54 +1,54 @@
-# React + TypeScript + Vite
+# 🎬 Front do CineXP
+---
+### 🔗  Links importantes
+Repositório da API (back-end): [clique aqui](https://cinexp.netlify.app/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Deploy do front-end: [clique aqui](https://github.com/anabraghim/trabalho_prog_web)
+### 📝 Descrição geral
+Este repositório contém o front-end do CineXP, desenvolvido como parte do trabalho da disciplina de Programação para Web, ministrada pelo professor Hudson Silva Borges.
 
-Currently, two official plugins are available:
+O front-end foi construído com React + TypeScript e estilizado com Tailwind CSS, proporcionando uma interface responsiva, moderna e interativa, sem necessidade de recarregar a página. A comunicação com o back-end é realizada por meio de requisições a uma API, hospedada no repositório citado acima.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A aplicação está organizada em páginas como:
 
-## Expanding the ESLint configuration
+- Home
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Login e Cadastro
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- Listagem de Críticas
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Cadastro de Crítica
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Minhas Críticas
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+Cada uma delas é estruturada com separação clara entre lógica, layout e estilo.
+O deploy do backend foi feito pelo site Render e o front pelo Netlify.
+
+
+### 👥 Integrantes do grupo
+* Ana Júlia de Lima Braghim
+RGA: 2023.1907.037-8
+* Mariele Andressa de Oliveira Farias
+RGA: 2023.1907.053-0
+* Matheus Droppa Omido
+RGA: 2023.1907.055-6
+### ✅ Funcionalidades implementadas
+- Funcionalidades básicas
+  - Login e cadastro de usuário
+  - Navegar pelas críticas de todos os usuários
+  - Visualizar detalhes de cada crítica
+  - Escrever críticas (apenas quando auenticado e autorizado)
+  - Alterar e remover críticas (apenas quando autenticado e autorizado)
+  - Buscar por críticas por nome da crítica.
+  - Cadastrar filmes (para o usuário cadastrar filmes reais e não haver duplicação, requisitamos da API do TMDB)
+- Funcionalides bônus:
+  - Buscas avançadas (além de buscar pelo nome da crítica, é possível buscar por qualquer palavra no texto em si da crítica e buscar pelos filmes relacionados as críticas)
+  - Comentar críticas (apenas quando autenticado e autorizado)
+### Tecnologias utilizadas
+- Vite + React + TypeScript
+- React Router – Gerenciamento de rotas
+- Redux – Gerenciamento de estados globais
+- Tailwind CSS – Estilização
+
+### 🚀 Como rodar o projeto
+Abra o projeto e no terminal digite: ```npm install``` e depois ```npm run dev```
